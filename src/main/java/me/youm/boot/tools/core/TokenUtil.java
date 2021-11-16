@@ -19,6 +19,7 @@ public class TokenUtil {
      *
      * @param userId   用户编号
      * @param username 用户账号
+     * @return token
      */
     public static String create(String userId, String username) {
         return Jwts.builder()

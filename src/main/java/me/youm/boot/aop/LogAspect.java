@@ -69,6 +69,8 @@ public class LogAspect {
 
     /**
      * 获 取 注 解
+     * @param point point
+     * @return {@link Log}
      * */
     public Log getAnnotation(ProceedingJoinPoint point) {
         MethodSignature signature = (MethodSignature) point.getSignature();

@@ -12,6 +12,8 @@ public class StringUtil {
 
     /**
      * 判断是否为空
+     * @param text text
+     * @return b
      */
     public static boolean isBlank(String text) {
         if (text.equals(SystemConstant.EMPTY)) {
@@ -22,16 +24,17 @@ public class StringUtil {
 
     /**
      * 判断是否为空
+     * @param text text
+     * @return b
      */
     public static boolean isEmpty(String text) {
-        if (text == null) {
-            return true;
-        }
-        return false;
+        return text == null;
     }
 
     /**
      * 判断是否不为空
+     * @param text text
+     * @return b
      */
     public static boolean isNotBlank(String text) {
         return !isBlank(text);
@@ -39,6 +42,8 @@ public class StringUtil {
 
     /**
      * 判断是否不为空
+     * @param text text
+     * @return b
      */
     public static boolean isNotEmpty(String text) {
         return !isNotEmpty(text);

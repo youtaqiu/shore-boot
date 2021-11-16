@@ -19,14 +19,14 @@ public @interface DataScopeRule {
     /**
      * 权 限 模 式
      * <p>
-     * {@link Scope} 权限 Scope
+     * @return {@link Scope} 权限 Scope
      */
     Scope scope();
 
     /**
      * 角 色 模 式
      * <p>
-     * {@link SysRole} 角色 Code
+     * @return {@link SysRole} 角色 Code
      */
     String role();
 }

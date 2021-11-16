@@ -69,6 +69,7 @@ public class Jvm {
 
     /**
      * 获取JDK名称
+     * @return name
      */
     public String getName() {
         return ManagementFactory.getRuntimeMXBean().getVmName();

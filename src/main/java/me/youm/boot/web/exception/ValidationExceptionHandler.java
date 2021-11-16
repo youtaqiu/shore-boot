@@ -24,6 +24,8 @@ public class ValidationExceptionHandler {
 
     /**
      * 处 理 form data 方 式 调 用 接 口 校 验 失 败 抛 出 的 异 常
+     * @param e exception
+     * @return {@link Result}
      */
     @ExceptionHandler(BindException.class)
     public Result<?> bindExceptionHandler(BindException e) {
@@ -34,6 +36,8 @@ public class ValidationExceptionHandler {
 
     /**
      * 处 理 json 请 求 体 调 用 接 口 校 验 失 败 抛 出 的 异 常
+     * @param e exception
+     * @return {@link Result}
      */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Result<?> methodArgumentNotValidExceptionHandler(MethodArgumentNotValidException e) {
@@ -44,6 +48,8 @@ public class ValidationExceptionHandler {
 
     /**
      * 处 理 单 个 参 数 校 验 失 败 抛 出 的 异 常
+     * @param e exception
+     * @return {@link Result}
      */
     @ExceptionHandler(ConstraintViolationException.class)
     public Result<?> constraintViolationExceptionHandler(ConstraintViolationException e) {

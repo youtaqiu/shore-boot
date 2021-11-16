@@ -56,6 +56,7 @@ public enum ResultCode {
 
     /**
      * 获 取 标 识
+     * @return code
      */
     public int code() {
         return code;
@@ -63,6 +64,7 @@ public enum ResultCode {
 
     /**
      * 获 取 消 息
+     * @return message
      */
     public String message() {
         return message;

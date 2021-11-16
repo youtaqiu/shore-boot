@@ -27,6 +27,8 @@ public class PageResponse<T> {
 
     /**
      * 构建实体
+     * @param total total
+     * @param record records
      */
     public PageResponse(int total, List<T> record) {
         this.total = total;
@@ -35,6 +37,7 @@ public class PageResponse<T> {
 
     /**
      * 构建实体
+     * @param pageInfo pageInfo
      */
     public PageResponse(PageInfo<T> pageInfo) {
         this.record = pageInfo.getList();

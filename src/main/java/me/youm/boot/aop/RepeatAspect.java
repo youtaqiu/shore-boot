@@ -70,6 +70,7 @@ public class RepeatAspect implements HandlerInterceptor {
 
     /**
      * 设置，间隔时间
+     * @param intervalTime 间隔时间
      */
     public void setIntervalTime(int intervalTime) {
         this.intervalTime = intervalTime;
@@ -101,8 +102,9 @@ public class RepeatAspect implements HandlerInterceptor {
      * 判断是否存在重复提交的问题
      *
      * @param request 请求实体
+     * @return 是否重复
      */
-    public boolean isRepeatSubmit(HttpServletRequest request) throws Exception {
+    public boolean isRepeatSubmit(HttpServletRequest request) {
 
         String parameters = JSON.toJSONString(request.getParameterMap());
         Map<String, Object> nowDataMap = new HashMap<String, Object>();
@@ -148,6 +150,8 @@ public class RepeatAspect implements HandlerInterceptor {
 
     /**
      * 获 取 注 解
+     * @param point point
+     * @return {@link Repeat}
      */
     public Repeat getAnnotation(ProceedingJoinPoint point) {
         MethodSignature signature = (MethodSignature) point.getSignature();

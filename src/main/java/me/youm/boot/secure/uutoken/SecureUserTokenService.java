@@ -26,6 +26,8 @@ public class SecureUserTokenService {
 
     /**
      * 创建 Token
+     * @param secureUser {@link SecureUser}
+     * @return {@link SecureUserToken}
      */
     public SecureUserToken createToken(SecureUser secureUser) {
         SecureUserToken userToken = new SecureUserToken();
@@ -36,6 +38,8 @@ public class SecureUserTokenService {
 
     /**
      * 存储 Token
+     * @param userToken token
+     * @return token
      */
     public String saveToken(SecureUserToken userToken) {
         String key = String.valueOf(UUID.randomUUID());
@@ -45,6 +49,9 @@ public class SecureUserTokenService {
 
     /**
      * 验证 Token
+     * @return {@link SecureUserToken}
+     * @param key key
+     * @param token token
      */
     public SecureUserToken verifyToken(String key, String token) throws TokenException {
         SecureUserToken secureUserToken = taskToken(key);
@@ -55,6 +62,8 @@ public class SecureUserTokenService {
 
     /**
      * 获取 Token
+     * @param key key
+     * @return {@link SecureUserToken}
      */
     public SecureUserToken taskToken(String key) {
         return redisTemplate.opsForValue().get(CacheNameConstant.TOKEN_NAME_PREFIX + key);
@@ -62,6 +71,7 @@ public class SecureUserTokenService {
 
     /**
      * 销毁 Token
+     * @param key key
      */
     public void destroyToken(String key) {
         redisTemplate.delete(CacheNameConstant.TOKEN_NAME_PREFIX + key);

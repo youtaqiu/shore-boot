@@ -9,6 +9,7 @@ public class ResultController {
 
     /**
      * 成功操作
+     * @return {@link Result}
      */
     public Result<?> success() {
         return Result.success();
@@ -16,6 +17,8 @@ public class ResultController {
 
     /**
      * 成功操作
+     * @param msg msg
+     * @return {@link Result}
      */
     public Result<?> success(String msg) {
         return Result.success(msg);
@@ -23,6 +26,8 @@ public class ResultController {
 
     /**
      * 成功操作
+     * @param data data
+     * @return {@link Result}
      */
     public Result<?> success(Object data) {
         return Result.success(data);
@@ -30,6 +35,9 @@ public class ResultController {
 
     /**
      * 成功操作
+     * @param msg msg
+     * @param  data data
+     * @return {@link Result}
      */
     public Result<?> success(String msg, Object data) {
         return Result.success(msg, data);
@@ -37,6 +45,10 @@ public class ResultController {
 
     /**
      * 成功操作
+     * @param code code
+     * @param  message message
+     * @param data data
+     * @return {@link Result}
      */
     public Result<?> success(int code, String message, Object data) {
         return Result.success(code, message, data);
@@ -44,6 +56,7 @@ public class ResultController {
 
     /**
      * 失败操作
+     * @return {@link Result}
      */
     public Result<?> failure() {
         return Result.failure();
@@ -51,6 +64,8 @@ public class ResultController {
 
     /**
      * 失败操作
+     * @param msg msg
+     * @return {@link Result}
      */
     public Result<?> failure(String msg) {
         return Result.failure(msg);
@@ -58,6 +73,9 @@ public class ResultController {
 
     /**
      * 失败操作
+     * @param msg msg
+     * @param data data
+     * @return {@link Result}
      */
     public Result<?> failure(String msg, Object data) {
         return Result.failure(msg, data);
@@ -65,6 +83,10 @@ public class ResultController {
 
     /**
      * 失败操作
+     * @param code code
+     * @param msg msg
+     * @param data data
+     * @return {@link Result}
      */
     public Result<?> failure(int code, String msg, Object data) {
         return Result.failure(code, msg, data);
@@ -72,6 +94,8 @@ public class ResultController {
 
     /**
      * 选择返回
+     * @param b b
+     * @return {@link Result}
      */
     public Result<?> auto(Boolean b) {
         return Result.auto(b);
@@ -79,6 +103,10 @@ public class ResultController {
 
     /**
      * 选择返回
+     * @param b b
+     * @param success success
+     * @param failure failure
+     * @return {@link Result}
      */
     public Result<?> auto(Boolean b, String success, String failure) {
         return Result.auto(b, success, failure);

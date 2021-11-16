@@ -16,18 +16,18 @@ import java.net.UnknownHostException;
 
 /**
  * Servlet 工具类
- *
+ * <p>
  * Author: 就 眠 仪 式
  * CreateTime: 2021/2/3
- * */
+ */
 public class ServletUtil {
 
     /**
      * 获取 HttpServletRequest 对象
      *
      * @return {@link HttpServletRequest}
-     * */
-    public static HttpServletRequest getRequest(){
+     */
+    public static HttpServletRequest getRequest() {
         ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         assert servletRequestAttributes != null;
         return servletRequestAttributes.getRequest();
@@ -37,8 +37,8 @@ public class ServletUtil {
      * 获取 HttpServletResponse 对象
      *
      * @return {@link HttpServletResponse}
-     * */
-    public static HttpServletResponse getResponse(){
+     */
+    public static HttpServletResponse getResponse() {
         ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         assert servletRequestAttributes != null;
         return servletRequestAttributes.getResponse();
@@ -48,8 +48,8 @@ public class ServletUtil {
      * 获取 HttpSession 对象
      *
      * @return {@link HttpSession}
-     * */
-    public static HttpSession getSession(){
+     */
+    public static HttpSession getSession() {
         ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         assert servletRequestAttributes != null;
         return servletRequestAttributes.getRequest().getSession();
@@ -57,10 +57,11 @@ public class ServletUtil {
 
     /**
      * 获取 Request 请求参数
-     * @param  paramName parameter
+     *
+     * @param paramName parameter
      * @return {@link String}
-     * */
-    public static String getParameter(String paramName){
+     */
+    public static String getParameter(String paramName) {
         return ServletUtil.getRequest().getParameter(paramName);
     }
 
@@ -68,8 +69,8 @@ public class ServletUtil {
      * 获取 Request Body 请求参数
      *
      * @return {@link String}
-     * */
-    public static JSONObject getBodyParameters(){
+     */
+    public static JSONObject getBodyParameters() {
         try {
             InputStreamReader reader = new InputStreamReader(getRequest().getInputStream(), SystemConstant.UTF8);
             char[] buff = new char[1024];
@@ -79,7 +80,7 @@ public class ServletUtil {
                 body = new String(buff, 0, length);
             }
             return JSON.parseObject(body);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
@@ -89,10 +90,11 @@ public class ServletUtil {
      * Response 对象写出数据
      *
      * @param msg 消息数据
-     * */
+     * @throws IOException io exception
+     */
     public static void write(String msg) throws IOException {
         HttpServletResponse response = getResponse();
-        response.setHeader("Content-type","application/json;charset="+ SystemConstant.UTF8);
+        response.setHeader("Content-type", "application/json;charset=" + SystemConstant.UTF8);
         response.setCharacterEncoding(SystemConstant.UTF8);
         response.getWriter().write(msg);
     }
@@ -101,8 +103,9 @@ public class ServletUtil {
      * Response 对象写出 JSON 数据
      *
      * @param data 消息数据
-     * */
-    public static void writeJson(Object data) throws IOException{
+     * @throws IOException io exception
+     */
+    public static void writeJson(Object data) throws IOException {
         write(JSON.toJSONString(data));
     }
 
@@ -110,8 +113,8 @@ public class ServletUtil {
      * Request 请求参数
      *
      * @return {@link String}
-     * */
-    public static String getQueryParam(){
+     */
+    public static String getQueryParam() {
         return getRequest().getQueryString();
     }
 
@@ -119,7 +122,7 @@ public class ServletUtil {
      * Request 请求地址
      *
      * @return {@link String}
-     * */
+     */
     public static String getRequestURI() {
         return getRequest().getRequestURI();
     }
@@ -128,20 +131,20 @@ public class ServletUtil {
      * Describe: Request 客户端地址
      *
      * @return {@link String}
-     * */
-    public static String getRemoteHost(){
+     */
+    public static String getRemoteHost() {
         String remoteHost = getRequest().getRemoteHost();
-        if("0:0:0:0:0:0:0:1".equals(remoteHost)){
+        if ("0:0:0:0:0:0:0:1".equals(remoteHost)) {
             remoteHost = "127.0.0.1";
         }
-        return remoteHost ;
+        return remoteHost;
     }
 
     /**
      * Describe: Request 客户端地址
      *
      * @return {@link String}
-     * */
+     */
     public static String getIpAddress() {
         HttpServletRequest request = getRequest();
         String ipAddress = request.getHeader("x-forwarded-for");
@@ -175,8 +178,8 @@ public class ServletUtil {
      * Request 请求方法
      *
      * @return {@link String}
-     * */
-    public static String getMethod(){
+     */
+    public static String getMethod() {
         return getRequest().getMethod();
     }
 
@@ -185,8 +188,8 @@ public class ServletUtil {
      *
      * @param name 名称
      * @return {@link String}
-     * */
-    public static String getHeader(String name){
+     */
+    public static String getHeader(String name) {
         return getRequest().getHeader(name);
     }
 
@@ -194,8 +197,8 @@ public class ServletUtil {
      * Request Agent
      *
      * @return {@link String}
-     * */
-    public static String getAgent(){
+     */
+    public static String getAgent() {
         return getHeader("User-Agent");
     }
 
@@ -203,8 +206,8 @@ public class ServletUtil {
      * Request 浏览器类型
      *
      * @return {@link String}
-     * */
-    public static String getBrowser(){
+     */
+    public static String getBrowser() {
         String userAgent = getAgent();
         if (userAgent.contains("Firefox")) return "火狐浏览器";
         else if (userAgent.contains("Chrome")) return "谷歌浏览器";
@@ -216,14 +219,14 @@ public class ServletUtil {
      * Request 访问来源 ( 客户端类型 )
      *
      * @return {@link String}
-     * */
-    public static String getSystem(){
+     */
+    public static String getSystem() {
         String userAgent = getAgent();
-        if (getAgent().toLowerCase().contains("windows" )) return "Windows";
-        else if (userAgent.toLowerCase().contains("mac" )) return "Mac";
-        else if (userAgent.toLowerCase().contains("x11" )) return "Unix";
-        else if (userAgent.toLowerCase().contains("android" )) return "Android";
-        else if (userAgent.toLowerCase().contains("iphone" )) return "IPhone";
+        if (getAgent().toLowerCase().contains("windows")) return "Windows";
+        else if (userAgent.toLowerCase().contains("mac")) return "Mac";
+        else if (userAgent.toLowerCase().contains("x11")) return "Unix";
+        else if (userAgent.toLowerCase().contains("android")) return "Android";
+        else if (userAgent.toLowerCase().contains("iphone")) return "IPhone";
         else return "UnKnown, More-Info: " + userAgent;
     }
 }

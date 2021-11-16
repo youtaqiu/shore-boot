@@ -27,11 +27,12 @@ public class SecureCaptchaRest extends ResultController {
 
     /**
      * Captcha 生成
+     * @return {@link Result}
      */
     @RateLimit
     @GetMapping("create")
     @ApiOperation(value = "创建验证码")
-    public Result createCaptcha() {
+    public Result<?> createCaptcha() {
         return success(customCaptchaService.createCaptcha());
     }
 

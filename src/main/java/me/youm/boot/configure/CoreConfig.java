@@ -49,6 +49,7 @@ public class CoreConfig implements WebMvcConfigurer {
 
     /**
      * 跨域配置
+     * @return {@link CorsFilter}
      */
     @Bean
     public CorsFilter corsFilter() {
@@ -59,6 +60,7 @@ public class CoreConfig implements WebMvcConfigurer {
 
     /**
      * 日期序列化
+     * @return {@link ObjectMapper}
      */
     @Bean
     @Primary
@@ -79,8 +81,11 @@ public class CoreConfig implements WebMvcConfigurer {
 
     /**
      * Redis 操作工具
+     * @param connectionFactory connection
+     * @return {@link RedisTemplate}
      */
     @Bean
+    @SuppressWarnings("all")
     public RedisTemplate<String, Serializable> redisTemplate(LettuceConnectionFactory connectionFactory) {
         RedisTemplate<String, Serializable> redisTemplate = new RedisTemplate<>();
         redisTemplate.setKeySerializer(new StringRedisSerializer());
@@ -92,6 +97,7 @@ public class CoreConfig implements WebMvcConfigurer {
 
     /**
      * 跨域配置
+     * @return {@link CorsConfiguration}
      */
     private CorsConfiguration corsConfig() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
@@ -106,6 +112,7 @@ public class CoreConfig implements WebMvcConfigurer {
      * Tomcat 默认拦截特殊字符 []
      * <p>
      * 宽 松 配 置
+     * @return {@link ConfigurableServletWebServerFactory}
      */
     @Bean
     public ConfigurableServletWebServerFactory webServerFactory() {
@@ -118,6 +125,7 @@ public class CoreConfig implements WebMvcConfigurer {
      * Interceptor 注册
      * <p>
      * 手 动 注 册
+     * @param registry registry
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {

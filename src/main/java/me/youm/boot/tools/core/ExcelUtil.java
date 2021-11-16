@@ -21,6 +21,8 @@ public class ExcelUtil {
      *
      * @param request 请求对象
      * @param clazz 对象
+     * @param <T> type
+     * @return type
      * */
     public static <T> List<T> read(HttpServletRequest request, Class clazz) {
         try {
@@ -36,6 +38,8 @@ public class ExcelUtil {
      *
      * @param filename 文件路径
      * @param clazz 对象
+     * @param <T> type
+     * @return type
      * */
     public static <T> List<T> read(String filename, Class clazz) {
         return EasyExcel.read(filename).head(clazz).sheet().doReadSync();
@@ -43,7 +47,7 @@ public class ExcelUtil {
 
     /**
      * 写 Excel
-     *
+     * @param list list
      * @param response 响应对象
      * @param clazz 对象
      * */
@@ -59,7 +63,7 @@ public class ExcelUtil {
 
     /**
      * 写 Excel
-     *
+     * @param list list
      * @param filename 文件名称
      * @param clazz 对象
      * */

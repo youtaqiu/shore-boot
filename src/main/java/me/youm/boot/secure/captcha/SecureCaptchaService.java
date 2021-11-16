@@ -3,6 +3,7 @@ package me.youm.boot.secure.captcha;
 import com.wf.captcha.SpecCaptcha;
 import me.youm.boot.constant.CacheNameConstant;
 import me.youm.boot.constant.SecurityConstant;
+import me.youm.boot.web.domain.Result;
 import me.youm.boot.web.exception.auth.captcha.CaptchaExpiredException;
 import me.youm.boot.web.exception.auth.captcha.CaptchaValidationException;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -25,6 +26,7 @@ public class SecureCaptchaService {
 
     /**
      * 创 建 Captcha
+     * @return {@link SecureCaptcha}
      */
     public SecureCaptcha createCaptcha() {
         SpecCaptcha captcha = new SpecCaptcha(142, 38);
@@ -36,6 +38,8 @@ public class SecureCaptchaService {
 
     /**
      * 验 证 Captcha
+     * @param key key
+     * @param code code
      */
     public void verifyCaptcha(String key, String code) {
         String redisCode = taskCaptcha(key);
@@ -45,6 +49,8 @@ public class SecureCaptchaService {
 
     /**
      * 获 取 Captcha
+     * @param key key
+     * @return value
      */
     public String taskCaptcha(String key) {
         return redisTemplate.opsForValue().get(CacheNameConstant.CAPTCHA_NAME_PREFIX + key);
@@ -52,6 +58,7 @@ public class SecureCaptchaService {
 
     /**
      * 销 毁 Captcha
+     * @param key key
      */
     public void destroyCaptcha(String key) {
         redisTemplate.delete(CacheNameConstant.CAPTCHA_NAME_PREFIX + key);

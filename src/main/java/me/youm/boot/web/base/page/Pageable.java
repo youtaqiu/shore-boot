@@ -26,6 +26,7 @@ public class Pageable {
      * @param records   待分页的数据
      * @param pageIndex 当前页码
      * @param pageSize  每页显示的条数
+     * @param <T> type
      * @return 分页数据 {@link PageResponse}
      */
     public static <T> List<T> of(List<T> records, int pageIndex, int pageSize) {
@@ -51,6 +52,7 @@ public class Pageable {
      *
      * @param request 分页参数
      * @param records 待分页的数据
+     * @param <T> type
      * @return 分页数据 {@link PageResponse}
      */
     public static <T> PageResponse<T> of(PageRequest request, List<T> records) {
@@ -66,6 +68,8 @@ public class Pageable {
      * 物理分页
      *
      * @param request 分页参数
+     * @param record records
+     * @param <T> type
      * @return 分页数据 {@link PageResponse}
      */
     public static <T> PageResponse<T> of(PageRequest request, Record record) {

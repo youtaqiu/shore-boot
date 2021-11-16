@@ -30,8 +30,7 @@ public class DomainInterceptor implements MetaObjectHandler {
     }
 
     /**
-     * @Field 创建人
-     * @Field 创建时间
+     * @param metaObject metaObject
      * */
     public void createField(MetaObject metaObject){
         this.strictInsertFill(metaObject,"createBy", String.class, userContext.getUserId());
@@ -39,8 +38,7 @@ public class DomainInterceptor implements MetaObjectHandler {
     }
 
     /**
-     * @Field 修改人
-     * @Field 修改时间
+     * @param metaObject metaObject
      * */
     public void updateField(MetaObject metaObject){
         this.strictInsertFill(metaObject,"updateBy", String.class, userContext.getUserId());

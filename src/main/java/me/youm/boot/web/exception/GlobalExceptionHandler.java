@@ -21,6 +21,8 @@ public class GlobalExceptionHandler {
 
     /**
      * 不 支 持 的 请 求 类 型
+     * @param e exception
+     * @return {@link Result}
      */
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     public Result<?> handleException(HttpRequestMethodNotSupportedException e) {
@@ -29,6 +31,8 @@ public class GlobalExceptionHandler {
 
     /**
      * 未 知 的 运 行 时 异 常
+     * @param e exception
+     * @return {@link Result}
      */
     @ExceptionHandler(RuntimeException.class)
     public Result<?> notFount(RuntimeException e) {
@@ -38,6 +42,8 @@ public class GlobalExceptionHandler {
 
     /**
      * 未 知 的 运 行 时 异 常
+     * @param e exception
+     * @return {@link Result}
      */
     @ExceptionHandler(SQLSyntaxErrorException.class)
     public Result<?> notColumn(RuntimeException e) {
@@ -47,6 +53,8 @@ public class GlobalExceptionHandler {
 
     /**
      * 系 统 异 常
+     * @param e exception
+     * @return {@link Result}
      */
     @ExceptionHandler(Exception.class)
     public Result<?> handleException(Exception e) {
@@ -56,6 +64,9 @@ public class GlobalExceptionHandler {
 
     /**
      * 业 务 异 常
+     * @param e exception
+     * @param request request
+     * @return {@link Result}
      */
     @ExceptionHandler(BusinessException.class)
     public Result<?> businessException(HttpServletRequest request, BusinessException e) {

@@ -17,16 +17,19 @@ public @interface Log {
 
     /**
      * Title 默认输入
+     * @return title
      */
     String title() default "暂无标题";
 
     /**
      * Describe 默认输入
+     * @return describe
      */
     String describe() default "暂无描述";
 
     /**
      * Action 操作类型
+     * @return {@link Action}
      */
     Action action() default Action.QUERY;
 

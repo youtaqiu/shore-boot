@@ -64,6 +64,8 @@ public class ExcelAspect {
 
     /**
      * 获 取 注 解
+     * @param point point
+     * @return {@link Excel}
      */
     public Excel getAnnotation(ProceedingJoinPoint point) {
         MethodSignature signature = (MethodSignature) point.getSignature();
@@ -79,6 +81,10 @@ public class ExcelAspect {
 
     /**
      * List 转换
+     * @param obj object
+     * @param clazz clz
+     * @param <T> type
+     * @return T
      */
     public static <T> List<T> toList(Object obj, Class<T> clazz) {
         List<T> result = new ArrayList<>();

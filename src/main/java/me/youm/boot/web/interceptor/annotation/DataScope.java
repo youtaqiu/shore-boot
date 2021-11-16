@@ -7,7 +7,7 @@ import java.lang.annotation.*;
 /**
  * 数据权限注解
  * <p>
- * 优先级：规则模式 > 自动模式 = 指定模式
+ * 优先级：规则模式 自动模式 指定模式
  *
  * @author youta
  */
@@ -22,6 +22,7 @@ public @interface DataScope {
      * Auto 模式下根据用户角色定义规则过滤数据
      * <p>
      * 非 Auto 模式下, 采用强制数据权限过滤，即用户角色定义的规则失效
+     * @return {@link Scope}
      */
     Scope scope() default Scope.AUTO;
 
@@ -30,6 +31,7 @@ public @interface DataScope {
      * 规 则 模 式
      * <p>
      * Rule 模式下, scope 配置失效
+     * @return {@link DataScopeRule}
      */
     DataScopeRule[] rules() default {};
 

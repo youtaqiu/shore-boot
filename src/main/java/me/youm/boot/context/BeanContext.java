@@ -30,6 +30,7 @@ public class BeanContext implements ApplicationContextAware {
      * 获取 Bean 实体
      *
      * @param name 名称
+     * @return {@link Object}
      */
     public static Object getBean(String name) {
         return applicationContext.getBean(name);
@@ -40,6 +41,8 @@ public class BeanContext implements ApplicationContextAware {
      *
      * @param name  名称
      * @param clazz 类型
+     * @param <T>   type
+     * @return type
      */
     public static <T> T getBean(String name, Class<T> clazz) {
         return applicationContext.getBean(name, clazz);
@@ -48,7 +51,9 @@ public class BeanContext implements ApplicationContextAware {
     /**
      * 获取 Bean 实例
      *
+     * @param <T>   type
      * @param clazz 类型
+     * @return type
      */
     public static <T> T getBean(Class<T> clazz) {
         return applicationContext.getBean(clazz);
@@ -58,6 +63,7 @@ public class BeanContext implements ApplicationContextAware {
      * Bean 是否存在
      *
      * @param name 名称
+     * @return boolean
      */
     public static boolean containsBean(String name) {
         return applicationContext.containsBean(name);
@@ -67,6 +73,7 @@ public class BeanContext implements ApplicationContextAware {
      * Bean 是否为单例
      *
      * @param name 名称
+     * @return boolean
      */
     public static boolean isSingleton(String name) {
         return applicationContext.isSingleton(name);
@@ -76,8 +83,9 @@ public class BeanContext implements ApplicationContextAware {
      * 获取 Bean 类型
      *
      * @param name 名称
+     * @return class
      */
-    public static Class<? extends Object> getType(String name) {
+    public static Class<?> getType(String name) {
         return applicationContext.getType(name);
     }
 
