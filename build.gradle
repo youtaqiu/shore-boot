@@ -3,7 +3,6 @@ plugins {
     id 'java-library'
     id 'maven-publish'
     id 'signing'
-    id 'io.codearte.nexus-staging' version '0.22.0'
 }
 
 ext {
@@ -24,17 +23,14 @@ ext {
     easyexcelVersion = "3.0.5"
 }
 
-version = "1.0.0"
+version = VERSION
+group = GROUP
 targetCompatibility = '11'
 
 repositories {
     mavenLocal()
     maven { url 'https://maven.aliyun.com/repository/public/' }
     mavenCentral()
-}
-java {
-    withJavadocJar()
-    withSourcesJar()
 }
 
 dependencies {
@@ -63,3 +59,14 @@ dependencies {
 }
 
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+apply from: "${rootProject.projectDir}/gradle/publish-jar.gradle"
+
+
+def getRepositoryUsername() {
+    return System.getenv('REPO_USER_NAME') ?: REPO_USER_NAME
+}
+
+def getRepositoryPassword() {
+    return System.getenv('REPO_PASS_WORD') ?: REPO_PASS_WORD
+}
