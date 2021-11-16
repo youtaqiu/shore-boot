@@ -10,8 +10,6 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
 import me.youm.boot.web.interceptor.RateLimitInterceptor;
-import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
-import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -108,18 +106,6 @@ public class CoreConfig implements WebMvcConfigurer {
         return corsConfiguration;
     }
 
-    /**
-     * Tomcat 默认拦截特殊字符 []
-     * <p>
-     * 宽 松 配 置
-     * @return {@link ConfigurableServletWebServerFactory}
-     */
-    @Bean
-    public ConfigurableServletWebServerFactory webServerFactory() {
-        TomcatServletWebServerFactory factory = new TomcatServletWebServerFactory();
-        factory.addConnectorCustomizers(connector -> connector.setProperty("relaxedQueryChars", "|{}[]"));
-        return factory;
-    }
 
     /**
      * Interceptor 注册

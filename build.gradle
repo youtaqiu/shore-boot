@@ -41,7 +41,10 @@ dependencies {
     api "redis.clients:jedis:$jedisVersion"
     api "com.github.oshi:oshi-core:$oshiVersion"
     api "org.springframework.boot:spring-boot-starter-security:$bootVersion"
-    api "org.springframework.boot:spring-boot-starter-web:$bootVersion"
+    api("org.springframework.boot:spring-boot-starter-web:$bootVersion") {
+        exclude module: "spring-boot-starter-tomcat"
+    }
+    api "org.springframework.boot:spring-boot-starter-undertow:$bootVersion"
     api "org.springframework.boot:spring-boot-starter-aop:$bootVersion"
     api "org.springframework.boot:spring-boot-starter-validation:$bootVersion"
     api "org.springframework.boot:spring-boot-starter-data-redis:$bootVersion"
