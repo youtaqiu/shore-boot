@@ -1,0 +1,10 @@
+${AnsiColor.BRIGHT_BLUE}
+Spring Boot Version: ${spring-boot.version}
+
+
+                                          /
+                                     _   /_  __ __  _
+                                    /_)_/ /_(_)/ (_</_
+
+
+${AnsiColor.BLACK}
